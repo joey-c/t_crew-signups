@@ -1,0 +1,62 @@
+<!-- homepage for logged in admin users-->
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <title>T_Crew Sign-Ups</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link type="text/css" rel="stylesheet" href="/stylesheets/timeline.css">
+  <link type="text/css" rel="stylesheet" href="/stylesheets/sticky-footer.css">
+  <link type="text/css" rel="stylesheet" href="/bootplus/css/bootplus.min.css" media="screen">
+  <script src = "/bootplus/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div id="wrap">
+    <div class="container">
+      {% include "templates/header.html"%}
+      <div class="row-fluid">
+        <form class="form-inline" action="/admin" method="post">
+          <input type="text" class="input-small" name="date" placeholder="DD/MM/YYYY">
+          <input type="text" class="input-small" name="start" placeholder="HHMM (start)">
+          <input type="text" class="input-small" name="spaces" placeholder="7 (spaces)">
+          <button type="submit" class="btn">Add new class</button>
+        </form>
+        <h4 class="text-center"><strong><br>Upcoming Classes</strong></h4>
+        {% if slots %}
+          <ul class="timeline">
+            {% for slot in slots %}
+              {% if slot.startTime > now %}
+                <li>
+                  <div class="direction-r">
+                    <div class="flag-wrapper">
+                      <span class="flag">{{slot.startTime.strftime('%d %B %Y')}}</span>
+                      <span class="time-wrapper">
+                        <span class="time"><a href="/remove?{{slot.key.urlsafe()}}">Remove</a></span>
+                      </span>
+                    </div>
+                    <div class="desc"> {{slot.totalSpaces - slot.registrants|length}}/{{slot.totalSpaces}} slot(s) available.</div>
+                  </div>
+                </li>
+              {% else %}
+                <li>
+                  <div class="direction-r">
+                    <div class="flag-wrapper">
+                      <span class="flag">{{slot.startTime.strftime('%d %B %Y')}}</span>
+                      <span class="time-wrapper">
+                        <span class="time"><a href="/remove?{{slot.key.urlsafe()}}">Remove</a></span>
+                      </span>                  </div>
+                    <div class="desc"> {{slot.totalSpaces - slot.registrants|length}}/{{slot.totalSpaces}} slot(s) available.</div>
+                  </div>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% else %}
+          <div class="text-center">There are no classes.</div>
+        {% endif %}
+      </div>
+      <div id="push"></div>
+    </div>
+  </div>
+  {% include "templates/footer.html" %}
+</body>
+</html>

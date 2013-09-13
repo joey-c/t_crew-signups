@@ -1,0 +1,18 @@
+<div class = "navbar">
+  <div class = "navbar-inner">
+    <a class="brand" href="/">T_Crew Sign-Ups</a>
+    	<ul class = "inline pull-right">
+	    	{% if loggedIn %}
+	    	  <li>
+	    	  	<form class="form" action="/update" method="post">
+		    	    <input type="text" class="input-small" name="name" pattern="[\sa-zA-Z]{5,50}" title="At least 5 characters (letters only). Please include your surname." placeholder="{{userName}}">
+		    	    <input type="text" maxlength=9 class="input-small" title="Eg. A12345678X" pattern="^[A-z]\d{7}[A-z]$" name="matric" placeholder="{{userMatric}}">
+		    	    <input type="text" maxlength=8 class="input-small" ninvalid="setCustomValidity('8 digits')" pattern="^\d{8}$" name="contact" title="8 consecutive digits only." placeholder="{{userMobile}}">
+		    	    <button type="submit" class="btn">Update</button>
+		    	  </form>
+		    	</li>
+	    	{% endif %}
+	     	<li><a class="btn" href="{{logInOut}}">{{logInOut_linkText}}</a></li>
+   	</ul>
+  </div>
+</div>
