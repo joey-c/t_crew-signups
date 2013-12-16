@@ -274,8 +274,9 @@ class RemoveHandler(webapp2.RequestHandler):
 			slot_key = ndb.Key(urlsafe=q_list[0])
 			slot = slot_key.get()
 			if slot:
-				for registrant in slot.registrants:
-					registrant.remove(slot_key)
+				for registrant_key in slot.registrants:
+					registrant = registrant_key.get()
+					registrant.slots.remove(slot_key)
 					registrant.put()
 				slot_key.delete()
 			else:
