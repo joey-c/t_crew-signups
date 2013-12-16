@@ -1,8 +1,16 @@
 <div class = "navbar">
   <div class = "navbar-inner">
     <a class="brand" href="/">T_Crew Sign-Ups</a>
+	  	{% if admin %}
+	  		<ul class = "nav">
+		    	<li><a href="{{adminSessions}}">Edit Sessions</a></li>
+		    	<li><a href="{{adminEditFront}}">Edit Front</a></li>
+		    	<li><a href="{{adminSettings}}">Admin Settings</a></li>
+		    	<li><a href="{{adminAccSettings}}">Account Settings</a></li>
+		    </ul>
+	    {% endif %}
     	<ul class = "inline pull-right">
-	    	{% if loggedIn %}
+	    	{% if loggedIn and not admin %}
 	    	  <li>
 	    	  	<form class="form" action="/update" method="post">
 		    	    <input type="text" class="input-small" name="name" pattern="[\sa-zA-Z]{5,50}" title="At least 5 characters (letters only). Please include your surname." placeholder="{{userName}}">

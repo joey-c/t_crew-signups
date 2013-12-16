@@ -19,17 +19,7 @@
             You need to update your name, matric number and contact number before signing up.
           </div>
         {% endif %}
-        <div class="text-center">
-          <h2>Beginner Hiphop Dance Classes by Xiaomei</h2>
-          <h3>Mondays, 6.30pm to 8pm
-            | Stephen Riady Centre
-            | Dance Studio (level 1).</h3>
-          <h5 >Pricing: $100/10 classes*, $15/class. Pay at the start of your package or class.
-            <br>(9th September's class is excluded from the package and only $8)
-            <br><small>*All classes in AY13/14 Sem1. Email tcrewtembusu [at] gmail [dot] com to sign up for the package. Limited slots available.</small></h5>
-            <strong>Do not sign up here if you are a Tembusian or if you are buying the package.</strong>
-          <h4><strong><br>Upcoming Classes</strong></h4>
-        </div>
+        {% include "templates/class_info.html" %}
         {% if slots %}
           <ul class="timeline">
             {% for slot in slots %}
