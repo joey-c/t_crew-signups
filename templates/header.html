@@ -1,26 +1,18 @@
-<div class = "navbar">
-  <div class = "navbar-inner">
-    <a class="brand" href="/">T_Crew Sign-Ups</a>
-	  	{% if admin %}
-	  		<ul class = "nav">
-		    	<li><a href="{{adminSessions}}">Edit Sessions</a></li>
-		    	<li><a href="{{adminEditFront}}">Edit Front</a></li>
-		    	<li><a href="{{adminSettings}}">Admin Settings</a></li>
-		    	<li><a href="{{adminAccSettings}}">Account Settings</a></li>
-		    </ul>
-	    {% endif %}
-    	<ul class = "inline pull-right">
-	    	{% if loggedIn and not admin %}
-	    	  <li>
-	    	  	<form class="form" action="/update" method="post">
-		    	    <input type="text" class="input-small" name="name" pattern="[\sa-zA-Z]{5,50}" title="At least 5 characters (letters only). Please include your surname." placeholder="{{userName}}">
-		    	    <input type="text" maxlength=9 class="input-small" title="Eg. A12345678X" pattern="^[A-z]\d{7}[A-z]$" name="matric" placeholder="{{userMatric}}">
-		    	    <input type="text" maxlength=8 class="input-small" ninvalid="setCustomValidity('8 digits')" pattern="^\d{8}$" name="contact" title="8 consecutive digits only." placeholder="{{userMobile}}">
-		    	    <button type="submit" class="btn">Update</button>
-		    	  </form>
-		    	</li>
-	    	{% endif %}
-	     	<li><a class="btn" href="{{logInOut}}">{{logInOut_linkText}}</a></li>
-   	</ul>
+<div class = "navbar navbar-default">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="/">T_Crew Sign-Ups</a>
   </div>
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+  	{% if admin %}
+  		<ul class="nav navbar-nav">
+	    	<li><a href="{{adminSessions}}">Edit Sessions</a></li>
+	    	<li><a href="{{adminEditFront}}">Edit Front</a></li>
+	    	<li><a href="{{adminSettings}}">Admin Settings</a></li>
+	    </ul>
+  	{% endif %}
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="{{accSettings}}">Update Profile</a></li>
+      <li><a href="{{logInOut}}">{{logInOut_linkText}}</a></li>
+    <ul>
+ 	</div>
 </div>

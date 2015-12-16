@@ -3,6 +3,7 @@ import jinja2
 import logging
 import os
 import webapp2
+import datetime
 import helpers
 import entities
 import adminFunctions
@@ -35,7 +36,7 @@ class LoginHandler(webapp2.RequestHandler):
 			'logInOut': users.create_login_url(federated_identity=providers['NUS']),
 			'logInOut_linkText': 'Login',
 			'now': datetime.datetime.now(),
-			'slots': getUpcomingSlots()
+			'slots': helpers.getUpcomingSlots()
 			}
 		page.response.write(template.render(template_values))
 
@@ -84,11 +85,11 @@ app = webapp2.WSGIApplication([
 	('/signup', userFunctions.SignUpHandler),
 	('/deregister', userFunctions.DeregisterHandler),
 	('/signup_error', userFunctions.SignUpErrorHandler),
+	('/profile', adminFunctions.AccSettingsHandler)],
 
 	#admin functions
 	('/remove', adminFunctions.RemoveSessionsHandler),
 	('/edit_sessions', adminFunctions.EditSessionsHandler),
 	('/edit_front', adminFunctions.EditFrontHandler),
 	('/admin_settings', adminFunctions.SettingsHandler),
-	('/admin_acc_settings', adminFunctions.AccSettingsHandler)],
   debug=True)

@@ -1,5 +1,6 @@
 import entities
 import datetime
+import defaults
 
 #converts unicode to ascii for inputs
 def convert(input):

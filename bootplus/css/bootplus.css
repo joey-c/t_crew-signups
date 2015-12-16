@@ -1029,7 +1029,7 @@ pre code {
 }
 
 form {
-  margin: 0 0 -20px;
+  margin: 0 0 20px;
 }
 
 fieldset {
@@ -1264,7 +1264,7 @@ textarea::-webkit-input-placeholder {
 .radio input[type="radio"],
 .checkbox input[type="checkbox"] {
   float: left;
-  margin-left: -16px;
+  margin-left: -20px;
 }
 
 .controls > .radio:first-child,

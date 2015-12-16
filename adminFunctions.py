@@ -16,7 +16,7 @@ def getTemplateValues(adminAcc, origRequest):
 					'adminSessions': '/admin_sessions',
 					'adminEditFront': '/admin_edit_front',
 					'adminSettings': '/admin_settings',
-					'adminAccSettings': '/admin_acc_settings'
+					'accSettings': '/acc_settings'
 					}
 
 ###must login to GAE and manually add admin
@@ -29,7 +29,7 @@ class EditSessionsHandler(webapp2.RequestHandler):
 			adminAcc = Admin.get_by_id(user.user_id())
 			if adminAcc:
 				template = jinja_environment.get_template('templates/admin_sessions.html')
-				template_values = getAdminTemplateValues(adminAcc, self)
+				template_values = getTemplateValues(adminAcc, self)
 				template_values.update({'slots': helpers.getSlots()})
 				self.response.write(template.render(template_values))
 		else:
@@ -80,7 +80,7 @@ class EditFrontHandler(webapp2.RequestHandler):
 			adminAcc = Admin.get_by_id(user.user_id())
 			if adminAcc:
 				template = jinja_environment.get_template('templates/admin_front.html')
-				template_values = getAdminTemplateValues(adminAcc, self)
+				template_values = getTemplateValues(adminAcc, self)
 				self.response.write(template.render(template_values))
 		else:
 			self.redirect('/')
@@ -93,7 +93,7 @@ class SettingsHandler(webapp2.RequestHandler):
 			adminAcc = Admin.get_by_id(user.user_id())
 			if adminAcc:
 				template = jinja_environment.get_template('templates/admin_settings.html')
-				template_values = getAdminTemplateValues(adminAcc, self)
+				template_values = getTemplateValues(adminAcc, self)
 				self.response.write(template.render(template_values))
 		else:
 			self.redirect('/')
@@ -106,7 +106,7 @@ class AccSettingsHandler(webapp2.RequestHandler):
 			adminAcc = Admin.get_by_id(user.user_id())
 			if adminAcc:
 				template = jinja_environment.get_template('templates/account_settings.html')
-				template_values = getAdminTemplateValues(adminAcc, self)
+				template_values = getTemplateValues(adminAcc, self)
 				self.response.write(template.render(template_values))
 		else:
 			self.redirect('/')
